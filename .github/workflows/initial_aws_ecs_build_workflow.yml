@@ -16,6 +16,10 @@ on:
         type: choice
         options: ['512', '1024', '2048', '4096', '5120', '6144', '7168', '8192']
 
+permissions:
+ id-token: write
+ contents: read
+
 env:
   PROJECT: realtime-poc
   ECS_CLUSTER: prefect-streaming

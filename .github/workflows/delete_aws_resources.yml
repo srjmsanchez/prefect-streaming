@@ -3,6 +3,10 @@ name: Delete ECS Cluster, Prefect ECS Service and ECR repository
 on:
   workflow_dispatch:
 
+permissions:
+ id-token: write
+ contents: read
+
 env:
   PROJECT: realtime-poc
 
