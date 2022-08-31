@@ -36,7 +36,7 @@ def load_prices(df: pd.DataFrame) -> None:
     table_name = "crypto"
     wr.s3.to_parquet(
         df=df,
-        path="s3://prefectdata/crypto/",
+        path="s3://rf-prefectdata-public/crypto/",
         dataset=True,
         mode="append",
         database="default",
