@@ -1,35 +1,96 @@
 {
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:task-definition/realtime-poc:1",
     "containerDefinitions": [
         {
             "name": "realtime-poc",
+            "image": "228653765084.dkr.ecr.us-east-1.amazonaws.com/realtime-poc:72bb4a8a86fa16f26a96db3ea09aa40174909f59",
+            "cpu": 0,
+            "links": [],
+            "portMappings": [],
             "essential": true,
+            "entryPoint": [],
+            "command": [],
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
             "secrets": [
                 {
                     "name": "PREFECT_API_URL",
-                    "valueFrom": "arn:aws:ssm:us-east-1:338306982838:parameter/PREFECT_API_URL"
+                    "valueFrom": "arn:aws:ssm:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:parameter/PREFECT_API_URL"
                 },
                 {
                     "name": "PREFECT_API_KEY",
-                    "valueFrom": "arn:aws:ssm:us-east-1:338306982838:parameter/PREFECT_API_KEY"
+                    "valueFrom": "arn:aws:ssm:us-east-1:${{ secrets.AWS_ACCOUNT_ID }}:parameter/PREFECT_API_KEY"
                 }
             ],
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "extraHosts": [],
+            "dockerSecurityOptions": [],
+            "dockerLabels": {},
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "realtime-poc",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "realtime-poc"
-                }
-            }
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
         }
     ],
     "family": "realtime-poc",
-    "taskRoleArn": "arn:aws:iam::338306982838:role/realtime-poc_ecs_task_role",
-    "executionRoleArn": "arn:aws:iam::338306982838:role/realtime-poc_ecs_execution_role",
+    "taskRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/realtime-poc_ecs_task_role",
+    "executionRoleArn": "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/realtime-poc_ecs_execution_role",
     "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "ecs.capability.secrets.ssm.environment-variables"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
     "cpu": "256",
-    "memory": "512"
+    "memory": "512",
+    "registeredAt": "2022-08-31T21:34:03.268000+00:00",
+    "registeredBy": "arn:aws:sts::${{ secrets.AWS_ACCOUNT_ID }}:assumed-role/github-actions-role/samplerolesession"
 }
