@@ -97,8 +97,7 @@ jobs:
           name: ${{ env.PROJECT }}
           template: infrastructure/ecs_service.yml
           capabilities: CAPABILITY_NAMED_IAM
-          role-to-assume: arn:aws:iam::529487024507:role/github-actions-role
-          role-session-name: samplerolesession
+          role-arn: arn:aws:iam::529487024507:role/github-actions-role          
           parameter-overrides: "cpu=${{ github.event.inputs.cpu }},memory=${{ github.event.inputs.memory }},project=${{ env.PROJECT }},cluster=${{ env.ECS_CLUSTER }},image=${{ steps.build-image.outputs.image }},region=${{ secrets.AWS_DEFAULT_REGION }}"
 
       - name: ECS Service Deployment finished
