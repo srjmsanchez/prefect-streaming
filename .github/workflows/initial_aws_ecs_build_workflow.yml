@@ -96,9 +96,8 @@ jobs:
         with:
           name: ${{ env.PROJECT }}
           template: infrastructure/ecs_service.yml
-          capabilities: CAPABILITY_NAMED_IAM
-          role-arn: arn:aws:iam::529487024507:role/github-actions-role          
-          parameter-overrides: "cpu=${{ github.event.inputs.cpu }},memory=${{ github.event.inputs.memory }},project=${{ env.PROJECT }},cluster=${{ env.ECS_CLUSTER }},image=${{ steps.build-image.outputs.image }},region=${{ secrets.AWS_DEFAULT_REGION }}"
+          capabilities: CAPABILITY_NAMED_IAM                  
+          parameter-overrides: "cpu=${{ github.event.inputs.cpu }},memory=${{ github.event.inputs.memory }},project=${{ env.PROJECT }},cluster=${{ env.ECS_CLUSTER }},image=${{ steps.build-image.outputs.image }},region=${{ secrets.AWS_DEFAULT_REGION }},awsaccountid=${{ secrets.AWS_ACCOUNT_ID }}"
 
       - name: ECS Service Deployment finished
         run: echo "ECS Service Deployment finished at $(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_STEP_SUMMARY
